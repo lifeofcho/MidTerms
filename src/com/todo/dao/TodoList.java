@@ -30,9 +30,9 @@ public class TodoList {
 		return new ArrayList<TodoItem>(list);
 	}
 
-	public void sortByName() {
+	public void sortByName() 
+	{
 		Collections.sort(list, new TodoSortByName());
-
 	}
 
 	public void listAll() {

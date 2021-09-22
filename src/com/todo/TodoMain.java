@@ -1,4 +1,4 @@
-package com.todo;
+	package com.todo;
 
 import java.util.Scanner;
 
@@ -14,12 +14,18 @@ public class TodoMain {
 		TodoList l = new TodoList();
 		boolean isList = false;
 		boolean quit = false;
+		TodoUtil.loadList(l, "todolist.txt");
+		Menu.displaymenu();
 		do {
-			Menu.displaymenu();
 			isList = false;
+			Menu.prompt();
+			System.out.println();
 			String choice = sc.next();
 			switch (choice) {
-
+				
+			case "help":
+				Menu.displaymenu();
+				break;
 			case "add":
 				TodoUtil.createItem(l);
 				break;
@@ -54,14 +60,14 @@ public class TodoMain {
 
 			case "exit":
 				quit = true;
+				TodoUtil.saveList(l, "todolist.txt");
 				break;
 
 			default:
 				System.out.println("please enter one of the above mentioned command");
 				break;
 			}
-			
-			if(isList) l.listAll();
+			if(isList) TodoUtil.listAll(l);
 		} while (!quit);
 	}
 }
