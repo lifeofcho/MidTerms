@@ -55,6 +55,10 @@ public class TodoList {
 		return list.indexOf(t);
 	}
 
+	public boolean isEmpty() {
+		return list.isEmpty();
+	}
+
 	public Boolean isDuplicate(String title) {
 		for (TodoItem item : list) {
 			if (title.equals(item.getTitle())) return true;

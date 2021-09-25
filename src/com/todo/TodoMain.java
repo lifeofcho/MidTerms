@@ -1,5 +1,6 @@
 	package com.todo;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 import com.todo.dao.TodoList;
@@ -12,9 +13,10 @@ public class TodoMain {
 	
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
+		HashSet<String> set = new HashSet<String>();
 		boolean isList = false;
 		boolean quit = false;
-		TodoUtil.loadList(l, "todolist.txt");
+		TodoUtil.loadList(l, "todolist.txt", set);
 		Menu.displaymenu();
 		do {
 			isList = false;
@@ -23,6 +25,12 @@ public class TodoMain {
 			String choice = sc.next();
 			switch (choice) {
 				
+			case "find":
+				TodoUtil.find(l);
+				break;
+			case "find_cate":
+				TodoUtil.find_cate(l);
+				break;
 			case "help":
 				Menu.displaymenu();
 				break;
@@ -41,7 +49,9 @@ public class TodoMain {
 			case "ls":
 				TodoUtil.listAll(l);
 				break;
-
+			case "ls_cate":
+				TodoUtil.ls_cate(l, set);
+				break;
 			case "ls_name_asc":
 				l.sortByName();
 				isList = true;
@@ -57,7 +67,11 @@ public class TodoMain {
 				l.sortByDate();
 				isList = true;
 				break;
-
+			case "ls_date_desc":
+				l.sortByDate();
+				l.reverseList();
+				isList = true;
+				break;
 			case "exit":
 				quit = true;
 				TodoUtil.saveList(l, "todolist.txt");
