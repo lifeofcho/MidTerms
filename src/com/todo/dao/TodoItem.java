@@ -11,37 +11,35 @@ public class TodoItem {
     private String category;
     private String due_date;
     private int is_comp;
+    private int priority;
+    private String place;
 
-
-    public TodoItem(String title, String desc, String category, String due_date)
+	public TodoItem(String title, String desc, String category, String due_date, String place)
     {
         this.title=title;
         this.desc=desc;
         this.category = category;
         this.due_date = due_date;
-        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");
+        this.place = place;
+        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
         this.current_date= f.format(new Date());
     }
     
     @Override
 	public String toString() 
     {
-    	if(is_comp == 1)
-    	{	
-    		if(id < 10)
-    			return " " + id + " " + category + "| " + title + "[V]" +  " -- " + desc + " -- " + current_date + " -- " + due_date;
-    		else
-    			return id + " " + category + "| " + title + "[V]" + " -- " + desc + " -- " + current_date + " -- " + due_date;
-    	}
+    	if(is_comp == 1)	
+    		title = title + "[V]";
+    	if(priority == 1)
+    		due_date = "URGENT";
     	
+    	if(id < 10)
+    		return " " + id + " " + category + "| " + title  +  " -- " + desc + " -- " + due_date + " -- " + place + " -- " + current_date;
     	else
-    	{
-    		if(id < 10)
-    			return " " + id + " " + category + "| " + title  +  " -- " + desc + " -- " + current_date + " -- " + due_date;
-    		else
-    			return id + " " + category + "| " + title + " -- " + desc + " -- " + current_date + " -- " + due_date;
-    	}
+    		return id + " " + category + "| " + title + " -- " + desc + " -- " + due_date + " -- " + place + " -- " + current_date;
+    	
 	}
+    
     public String getCategory()
     {
 		return category;
@@ -79,10 +77,22 @@ public class TodoItem {
     {
     	this.id = id;
     }
+	
     public int getId()
     {
     	return id;
     }
+    
+    public String getPlace() 
+    {
+		return place;
+	}
+
+	public void setPlace(String place) 
+	{
+		this.place = place;
+	}
+	
     public String getDesc() 
     {
         return desc;
@@ -110,4 +120,12 @@ public class TodoItem {
     {
     	this.is_comp = is_comp;
     }
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 }
