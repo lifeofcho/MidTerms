@@ -94,7 +94,7 @@ public class TodoUtil {
 				check++;
 		}
 		if(check == num)
-			System.out.println("지목하신 아이템들을 완료하였습니다.");	
+			System.out.println("지목하신 아이템들을 삭제하였습니다.");	
 	}
 	
 	public static void uncheckItem(TodoList l)
